@@ -9,10 +9,9 @@
 
 # Project: Passkey Auth React Node
 
-<video width="600" controls autoplay >
-  <source src="https://res.cloudinary.com/taidev/video/upload/v1723006811/passkey_hnqp7y.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![Passkey demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://res.cloudinary.com/taidev/video/upload/v1723006811/passkey_hnqp7y.mp4)
+
+Click the image above to watch the video.
 
 ## Prerequisites
 
