@@ -1,0 +1,22 @@
+{
+  // Format code on save
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  // Enable auto import suggestions
+  "javascript.suggest.autoImports": true,
+  // Enable Emmet abbreviations in JS
+  "emmet.includeLanguages": {
+    "javascript": "javascript"
+  },
+  // Use Prettier for code formatting
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Enable bracket pair colorization
+  "editor.bracketPairColorization.enabled": true,
+  // Enable inlay hints for TypeScript and JavaScript
+  "javascript.inlayHints.parameterNames.enabled": "all",
+
+  "emmet.triggerExpansionOnTab": true,
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always"
+}
