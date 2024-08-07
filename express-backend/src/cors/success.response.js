@@ -1,11 +1,12 @@
 "use strict";
 
+const reasonPhrases = require("../utils/codes/reasonPhrases");
 const statusCodes = require("../utils/codes/statusCodes");
 
 class SuccessResponse {
   constructor({ message, status, metadata = {} }) {
-    this.message = message;
     this.status = status;
+    this.message = message;
     this.metadata = metadata;
   }
 
@@ -15,13 +16,21 @@ class SuccessResponse {
 }
 
 class Ok extends SuccessResponse {
-  constructor({ message, status = statusCodes.OK, metadata = {} } = {}) {
+  constructor({
+    status = statusCodes.OK,
+    message = reasonPhrases.OK,
+    metadata = {},
+  } = {}) {
     super({ message, status, metadata });
   }
 }
 
 class Created extends SuccessResponse {
-  constructor({ message, status = statusCodes.CREATED, metadata = {} } = {}) {
+  constructor({
+    status = statusCodes.CREATED,
+    message = reasonPhrases.CREATED,
+    metadata = {},
+  } = {}) {
     super({ message, status, metadata });
   }
 }

@@ -4,7 +4,7 @@ const AuthServices = require("../../services/authServices");
 class AuthControllers {
   async login(req, res) {
     new Ok({
-      metadata: await AuthServices.login(req.body),
+      metadata: await AuthServices.login(req, res),
     }).send(res);
   }
 
