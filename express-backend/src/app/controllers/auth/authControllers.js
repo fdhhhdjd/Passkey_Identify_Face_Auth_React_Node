@@ -10,7 +10,7 @@ class AuthControllers {
 
   async logout(req, res) {
     new Ok({
-      metadata: await AuthServices.logout(req),
+      metadata: await AuthServices.logout(req, res),
     }).send(res);
   }
 }

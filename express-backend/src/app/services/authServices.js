@@ -33,8 +33,22 @@ class AuthServices {
     return user;
   }
 
-  static async logout() {
-    return {};
+  static async logout(req, res) {
+    const sessionId = req.cookies[cookieConstants.LOGIN];
+
+    if (!sessionId) {
+      throw new BadRequestResponse({
+        message: "No session to log out from",
+      });
+    }
+
+    SessionHelpers.clearUserSession(sessionId);
+
+    CookieHelpers.clearCookieByKey(res, {
+      key: cookieConstants.LOGIN,
+    });
+
+    return sessionId;
   }
 }
 
