@@ -9,9 +9,10 @@
 
 # Project: Passkey Auth React Node
 
-[![Passkey demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://res.cloudinary.com/taidev/video/upload/v1723006811/passkey_hnqp7y.mp4)
+## Click the image above to watch the video.
 
-Click the image above to watch the video.
+[![Watch the video](https://res.cloudinary.com/taidev/image/upload/v1658242538/x4hzit1dmyhrzjsffuvl.png)](https://res.cloudinary.com/taidev/video/upload/v1723006811/passkey_hnqp7y.mp4)
+
 
 ## Prerequisites
 
