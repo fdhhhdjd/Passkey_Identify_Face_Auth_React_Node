@@ -28,15 +28,7 @@ export default defineConfig(({ mode }) => {
         },
       }),
     ],
-    server: {
-      port: 5173,
-      host: true,
-      strictPort: true,
-      watch: {
-        usePolling: true,
-      },
-    },
-    base: "/login",
+    base: "/",
     resolve: {
       extensions: [".js", ".jsx", ".json"], // Add other extensions you need.
       alias: [
