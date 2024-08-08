@@ -15,6 +15,7 @@ class SessionHelpers {
   }
 
   static setUserTempSession(tempSessionId, user) {
+    console.log(tempSessionId, user);
     this.tempSessionIdToUserMap.set(tempSessionId, user);
   }
 

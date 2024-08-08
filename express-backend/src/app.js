@@ -30,6 +30,9 @@ app.use(
   })
 );
 
+//* GLOBALS
+require("./globals");
+
 //* ROUTES
 app.use("/api", require("./app/routes"));
 

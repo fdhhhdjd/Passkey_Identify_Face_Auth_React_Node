@@ -4,7 +4,7 @@ const PasskeyServices = require("../../services/passkeyService");
 class PasskeyControllers {
   async registerPasskey(req, res) {
     new Created({
-      metadata: await PasskeyServices.registerPasskey(req.body),
+      metadata: await PasskeyServices.registerPasskey(req, res),
     }).send(res);
   }
 }

@@ -15,9 +15,7 @@ class AuthServices {
     const user = db.users.find((user) => user.email === email);
 
     if (!user || user.password !== password) {
-      throw new BadRequestResponse({
-        message: "Invalid username or password",
-      });
+      throw new BadRequestResponse();
     }
 
     const tempSessionId = uuidv4();
@@ -26,20 +24,22 @@ class AuthServices {
       throw new BadRequestResponse();
     }
 
-    SessionHelpers.setUserTempSession(tempSessionId, user);
+    SessionHelpers.setUser(tempSessionId, user);
 
     CookieHelpers.saveCookie(res, cookieConstants.LOGIN, tempSessionId);
 
-    return user;
+    return {
+      id: user.id,
+      email: user.email,
+      session: tempSessionId,
+    };
   }
 
   static async logout(req, res) {
     const sessionId = req.cookies[cookieConstants.LOGIN];
 
     if (!sessionId) {
-      throw new BadRequestResponse({
-        message: "No session to log out from",
-      });
+      throw new BadRequestResponse();
     }
 
     SessionHelpers.clearUserSession(sessionId);
