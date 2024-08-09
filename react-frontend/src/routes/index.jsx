@@ -7,11 +7,11 @@ import PageLoader from "@/components/ui/loaders/pageLoader";
 import RootLoader from "@/components/ui/loaders/rootLoader";
 import { randomNumber } from "@/helpers/randomUtils";
 import { Toaster } from "@/components/common/sonner";
+import ErrorFallback from "@/pages/error";
 
 const NotFound = React.lazy(() => import("@/pages/notfound"));
 const Login = React.lazy(() => import("@/pages/login"));
 const Dashboard = React.lazy(() => import("@/pages/dashboard"));
-const ErrorPage = React.lazy(() => import("@/pages/error"));
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         <App />
       </React.Suspense>
     ),
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorFallback />,
     children: [
       {
         index: true,
