@@ -38,6 +38,8 @@ class AuthServices {
   static async logout(req, res) {
     const sessionId = req.cookies[cookieConstants.LOGIN];
 
+    console.log(sessionId);
+
     if (!sessionId) {
       throw new BadRequestResponse();
     }

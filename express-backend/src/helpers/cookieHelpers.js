@@ -34,7 +34,7 @@ class CookieHelpers {
         process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
       sameSite:
         process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
-      secure: process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
+      secure: true,
       maxAge: time,
       domain:
         process.env.NODE_ENV === appConstants.NODE_APP[0]
