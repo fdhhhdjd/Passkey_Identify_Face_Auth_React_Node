@@ -9,7 +9,7 @@ const useLogin = () => {
   const loginUser = async (email, password) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${process.env.URL_API}/api/login`, {
+      const response = await fetch(`${process.env.URL_API}/api/auth/login`, {
         method: "POST",
         credentials: "include",
         headers: {

@@ -15,7 +15,7 @@ import { get } from "@github/webauthn-json";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { loginUser } = useLogin();
+  const { loginUser, isLoading } = useLogin();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,7 +23,7 @@ const Login = () => {
     event.preventDefault();
     const success = await loginUser(email, password);
     if (success) {
-      navigate("/dashboard");
+      navigate("/");
     }
   };
 
@@ -84,7 +84,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
             />
-            <Button type="submit" className="mt-4 w-full">
+            <Button type="submit" className="mt-4 w-full" loading={isLoading}>
               Sign in with Email
             </Button>
           </form>
