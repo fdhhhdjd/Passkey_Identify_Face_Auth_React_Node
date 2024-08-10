@@ -7,7 +7,7 @@
 <a href = "mailto:nguyentientai10@gmail.com"><img src="https://img.icons8.com/fluency/48/000000/send-mass-email.png" alt="License"></a>
 </p>
 
-# Project: Passkey Auth React Node
+# Project: Passkey Auth React Node.
 
 ## Click the image above to watch the video.
 
