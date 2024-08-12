@@ -1,3 +1,5 @@
+"use strict";
+
 const cookieConstants = require("../constants/cookieConstants");
 const { UnauthorizedError } = require("../cors/error.response");
 const SessionHelpers = require("../helpers/sessionHelpers");
