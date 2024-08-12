@@ -9,8 +9,6 @@ class AuthMiddlewares {
     try {
       const sessionId = req.cookies[cookieConstants.LOGIN];
 
-      console.log(sessionId);
-
       if (!sessionId) {
         next(new UnauthorizedError());
       }
