@@ -23,7 +23,7 @@ app.use(
   })
 );
 app.use(helmet());
-app.use(morgan(process.env.NODE_ENV));
+app.use(morgan("dev"));
 app.use(
   express.urlencoded({
     extended: true,
