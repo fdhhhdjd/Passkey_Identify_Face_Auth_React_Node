@@ -25,6 +25,7 @@ const useLogin = () => {
           console.log("Redirecting to MFA page as it is required.");
         } else {
           console.log("Login successful:", data);
+          localStorage.setItem("userId", data.metadata.id);
           return true;
         }
       } else {

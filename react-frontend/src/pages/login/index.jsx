@@ -34,7 +34,12 @@ const Login = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ start: true, finish: false, credential: null }),
+        body: JSON.stringify({
+          start: true,
+          finish: false,
+          options: null,
+          id: localStorage.getItem("userId"),
+        }),
       }
     );
 
@@ -47,12 +52,18 @@ const Login = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ start: false, finish: true, options }),
+        body: JSON.stringify({
+          start: false,
+          finish: true,
+          options,
+          id: localStorage.getItem("userId"),
+        }),
       }
     );
+    const data = await response.json();
 
-    if (response.ok) {
-      console.log("user logged in with passkey");
+    if (data.status === 200) {
+      console.log("user logged in with passkey", data);
       navigate("/");
     }
   };

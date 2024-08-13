@@ -38,18 +38,15 @@ class AuthServices {
   }
 
   static async handlePasskeyLogin(req, res) {
-    const { user } = req;
-    console.log("userForMfaLogin", user);
+    const { start, finish, options, id } = req.body;
 
-    const userID = "b3fbbdbd-6bb5-4558-9055-3b54a9469629";
+    const userID = id;
     console.log("userIDfromMFALogin", userID);
 
     if (!userID) {
       console.error("MFA Login not allowed");
       throw new BadRequestResponse();
     }
-
-    const { start, finish, options } = req.body;
 
     if (start) {
       const loginOptions = await passkeyHelpers.startMfaLogin(userID);
