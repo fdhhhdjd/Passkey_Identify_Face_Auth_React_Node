@@ -9,5 +9,6 @@ router.get("/logout", AsyncHandler.wrap(authControllers.logout));
 
 //* POST
 router.post("/login", AsyncHandler.wrap(authControllers.login));
+router.post("/passkey/login", AsyncHandler.wrap(authControllers.LoginPasskey));
 
 module.exports = router;

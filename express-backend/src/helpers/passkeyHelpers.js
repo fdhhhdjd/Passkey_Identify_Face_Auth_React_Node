@@ -71,6 +71,8 @@ class PasskeyHelpers {
     if (!this.passkeyApi) throw new BadRequestResponse();
 
     const user = db.users.find((user) => user.id === userID);
+
+    console.log(user, "---", user.id);
     await this.passkeyApi.user(user.id).mfa.registration.finalize(credential);
   }
 

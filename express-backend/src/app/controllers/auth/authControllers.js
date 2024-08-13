@@ -8,6 +8,12 @@ class AuthControllers {
     }).send(res);
   }
 
+  async LoginPasskey(req, res) {
+    new Ok({
+      metadata: await AuthServices.handlePasskeyLogin(req, res),
+    }).send(res);
+  }
+
   async logout(req, res) {
     new Ok({
       metadata: await AuthServices.logout(req, res),

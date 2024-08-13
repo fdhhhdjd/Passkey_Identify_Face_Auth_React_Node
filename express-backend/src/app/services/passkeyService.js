@@ -28,6 +28,8 @@ class PassKeyServices {
   static async handleMfaRegister(req, __) {
     const { id } = req.user;
 
+    console.log(req.user);
+
     const { start, finish, credential } = req.body;
 
     if (start) {
@@ -35,6 +37,7 @@ class PassKeyServices {
       return createOptions;
     } else if (finish) {
       const resultFinish = await PasskeyHelpers.finishMfaRegistration(
+        id,
         credential
       );
       console.log("MFA registration finish ✅");

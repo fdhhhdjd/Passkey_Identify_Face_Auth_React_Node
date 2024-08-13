@@ -29,7 +29,7 @@ const Login = () => {
 
   const signInWithPasskey = async () => {
     const createOptionsResponse = await fetch(
-      `${process.env.URL_API}/api/passkeys/login`,
+      `${process.env.URL_API}/api/auth/passkey/login`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -38,19 +38,22 @@ const Login = () => {
       }
     );
 
-    const { loginOptions } = await createOptionsResponse.json();
+    const { metadata: loginOptions } = await createOptionsResponse.json();
     const options = await get(loginOptions);
 
-    const response = await fetch(`${process.env.URL_API}/api/passkeys/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ start: false, finish: true, options }),
-    });
+    const response = await fetch(
+      `${process.env.URL_API}/api/auth/passkey/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ start: false, finish: true, options }),
+      }
+    );
 
     if (response.ok) {
       console.log("user logged in with passkey");
-      navigate("/dashboard");
+      navigate("/");
     }
   };
 

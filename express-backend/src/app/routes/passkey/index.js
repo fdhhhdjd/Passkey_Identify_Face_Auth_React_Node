@@ -5,7 +5,7 @@ const AuthMiddlewares = require("../../../middlewares/authMiddlewares");
 
 const router = express.Router();
 
-//* MIDDLWARES
+//* MIDDLEWARES
 router.use(AuthMiddlewares.checkAuth);
 
 //* POST
