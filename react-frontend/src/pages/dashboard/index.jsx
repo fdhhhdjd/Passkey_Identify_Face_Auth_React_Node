@@ -59,7 +59,7 @@ const Dashboard = () => {
 
   const registerMfaPasskey = async () => {
     const createOptionsResponse = await fetch(
-      "http://localhost:5001/api/passkeys/mfa/register",
+      `${process.env.URL_API}/api/passkey/mfa/register`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -68,14 +68,14 @@ const Dashboard = () => {
       }
     );
 
-    const { createOptions } = await createOptionsResponse.json();
+    const { metadata: createOptions } = await createOptionsResponse.json();
     console.log("createOptions", createOptions);
 
     const credential = await create(createOptions);
     console.log(credential);
 
     const response = await fetch(
-      "http://localhost:5001/api/passkeys/mfa/register",
+      `${process.env.URL_API}/api/passkey/mfa/register`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

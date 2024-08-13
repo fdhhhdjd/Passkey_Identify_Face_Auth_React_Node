@@ -24,6 +24,24 @@ class PassKeyServices {
 
     throw new BadRequestResponse();
   }
+
+  static async handleMfaRegister(req, __) {
+    const { id } = req.user;
+
+    const { start, finish, credential } = req.body;
+
+    if (start) {
+      const createOptions = await PasskeyHelpers.startMfaRegistration(id);
+      return createOptions;
+    } else if (finish) {
+      const resultFinish = await PasskeyHelpers.finishMfaRegistration(
+        credential
+      );
+      console.log("MFA registration finish ✅");
+      return resultFinish;
+    }
+    throw new BadRequestResponse();
+  }
 }
 
 module.exports = PassKeyServices;
