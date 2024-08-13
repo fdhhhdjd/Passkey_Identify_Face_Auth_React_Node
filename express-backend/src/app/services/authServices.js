@@ -37,7 +37,7 @@ class AuthServices {
     };
   }
 
-  static async handlePasskeyLogin(req, res) {
+  static async handleMfaLogin(req, res) {
     const { start, finish, options, id } = req.body;
 
     const userID = id;
@@ -66,6 +66,43 @@ class AuthServices {
       if (!user) {
         throw new BadRequestResponse();
       }
+
+      const tempSessionId = uuidv4();
+
+      if (!tempSessionId) {
+        throw new BadRequestResponse();
+      }
+
+      SessionHelpers.setUser(tempSessionId, user);
+
+      CookieHelpers.saveCookie(res, cookieConstants.LOGIN, tempSessionId);
+
+      return {
+        id: user.id,
+        email: user.email,
+        session: tempSessionId,
+      };
+    }
+  }
+
+  static async handlePasskeyLogin(req, res) {
+    const { start, finish, options } = req.body;
+
+    if (start) {
+      const loginOptions = await passkeyHelpers.startServerPasskeyLogin();
+      return loginOptions;
+    }
+    if (finish) {
+      const jwtToken = await passkeyHelpers.finishServerPasskeyLogin(options);
+
+      const userID = await JwtHelpers.extractUserID(jwtToken?.token ?? "");
+      console.log("userID from hanko", userID);
+
+      const user = db.users.find((user) => user.id === userID);
+      if (!user) {
+        throw new BadRequestResponse();
+      }
+      console.log("user", user);
 
       const tempSessionId = uuidv4();
 

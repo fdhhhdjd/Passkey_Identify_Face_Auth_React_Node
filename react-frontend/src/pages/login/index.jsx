@@ -27,9 +27,9 @@ const Login = () => {
     }
   };
 
-  const signInWithPasskey = async () => {
+  const signInWithMfaPasskey = async () => {
     const createOptionsResponse = await fetch(
-      `${process.env.URL_API}/api/auth/passkey/login`,
+      `${process.env.URL_API}/api/auth/mfa/passkey/login`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -47,7 +47,7 @@ const Login = () => {
     const options = await get(loginOptions);
 
     const response = await fetch(
-      `${process.env.URL_API}/api/auth/passkey/login`,
+      `${process.env.URL_API}/api/auth/mfa/passkey/login`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -64,6 +64,45 @@ const Login = () => {
 
     if (data.status === 200) {
       console.log("user logged in with passkey", data);
+      navigate("/");
+    }
+  };
+
+  const signInWithPasskey = async () => {
+    const createOptionsResponse = await fetch(
+      `${process.env.URL_API}/api/auth/passkey/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          start: true,
+          finish: false,
+          options: null,
+        }),
+      }
+    );
+
+    const { metadata: loginOptions } = await createOptionsResponse.json();
+    const options = await get(loginOptions);
+
+    const response = await fetch(
+      `${process.env.URL_API}/api/auth/passkey/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          start: false,
+          finish: true,
+          options,
+        }),
+      }
+    );
+    const data = await response.json();
+
+    if (data.status === 200) {
+      console.log("user logged in with mfa passkey", data);
       navigate("/");
     }
   };
@@ -114,6 +153,9 @@ const Login = () => {
           </div>
           <Button className="mt-4 w-full" onClick={signInWithPasskey}>
             Sign in with a Passkey
+          </Button>
+          <Button className="mt-4 w-full" onClick={signInWithMfaPasskey}>
+            Sign in with a MFA Passkey
           </Button>
         </CardContent>
       </Card>

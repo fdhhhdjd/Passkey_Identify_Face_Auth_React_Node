@@ -8,6 +8,12 @@ class AuthControllers {
     }).send(res);
   }
 
+  async LoginMfaPasskey(req, res) {
+    new Ok({
+      metadata: await AuthServices.handleMfaLogin(req, res),
+    }).send(res);
+  }
+
   async LoginPasskey(req, res) {
     new Ok({
       metadata: await AuthServices.handlePasskeyLogin(req, res),
