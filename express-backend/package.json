@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@teamhanko/passkeys-sdk": "^0.2.1",
+    "@vladmandic/face-api": "^1.7.13",
+    "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -19,8 +21,10 @@
     "express": "^4.19.2",
     "helmet": "^7.1.0",
     "jose": "^5.6.3",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
+    "pg": "^8.12.0",
     "uuid": "^10.0.0"
   }
 }
