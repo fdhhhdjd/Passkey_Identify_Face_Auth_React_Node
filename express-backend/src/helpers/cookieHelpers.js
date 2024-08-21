@@ -29,17 +29,13 @@ class CookieHelpers {
       : [headerValue];
     const headerParts = headerArray[0]?.split(":");
 
+    console.log(headerParts[0]);
     const option = {
-      httpOnly:
-        process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
-      sameSite:
-        process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
-      secure: true,
+      httpOnly: true,
+      sameSite: "None",
+      secure: process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
       maxAge: time,
-      domain:
-        process.env.NODE_ENV === appConstants.NODE_APP[0]
-          ? "localhost"
-          : headerParts[0],
+      domain: headerParts[0],
       partitioned: true,
     };
 
