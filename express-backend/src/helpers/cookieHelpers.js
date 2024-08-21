@@ -18,24 +18,13 @@ class CookieHelpers {
     return res.clearCookie(key);
   }
 
-  static saveCookie(res, key, value, time = timeConstants._1_DAY * 30) {
-    const headerValue =
-      appConstants.NODE_APP[0] === process.env.NODE_ENV
-        ? "localhost"
-        : res.headers["x-forwarded-host"];
-
-    const headerArray = Array.isArray(headerValue)
-      ? headerValue
-      : [headerValue];
-    const headerParts = headerArray[0]?.split(":");
-
+  static saveCookie(res, key, value, time = timeConstants._1_DAY) {
     const option = {
       httpOnly: true,
       sameSite:
         process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
       secure: process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
       maxAge: time,
-      domain: headerParts,
       // partitioned: true,
     };
 
