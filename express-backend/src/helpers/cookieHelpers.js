@@ -31,11 +31,11 @@ class CookieHelpers {
 
     const option = {
       httpOnly: true,
-      sameSite: "None",
       secure: process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
+      sameSite: "None",
       maxAge: time,
       // domain: headerParts[0],
-      partitioned: true,
+      // partitioned: true,
     };
 
     res.cookie(key, value, option);
