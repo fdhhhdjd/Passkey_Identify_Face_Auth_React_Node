@@ -31,9 +31,11 @@ class CookieHelpers {
 
     const option = {
       httpOnly: true,
-      secure: false, // true for production with HTTPS
       sameSite: "None",
-      maxAge: 1000 * 60 * 60 * 24, // 1 day
+      secure: process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
+      maxAge: time,
+      domain: headerParts[0],
+      partitioned: true,
     };
 
     console.log(option);
