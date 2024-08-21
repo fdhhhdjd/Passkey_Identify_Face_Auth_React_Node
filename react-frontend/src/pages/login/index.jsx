@@ -12,6 +12,7 @@ import useLogin from "@/hooks/useLogin";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { get } from "@github/webauthn-json";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,82 +29,81 @@ const Login = () => {
   };
 
   const signInWithMfaPasskey = async () => {
-    const createOptionsResponse = await fetch(
-      `${process.env.URL_API}/api/auth/mfa/passkey/login`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
+    try {
+      const createOptionsResponse = await axios.post(
+        `${process.env.URL_API}/api/auth/mfa/passkey/login`,
+        {
           start: true,
           finish: false,
           options: null,
           id: localStorage.getItem("userId"),
-        }),
-      }
-    );
+        },
+        { withCredentials: true }
+      );
 
-    const { metadata: loginOptions } = await createOptionsResponse.json();
-    const options = await get(loginOptions);
+      const { metadata: loginOptions } = createOptionsResponse.data;
 
-    const response = await fetch(
-      `${process.env.URL_API}/api/auth/mfa/passkey/login`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
+      const options = await get(loginOptions);
+
+      const response = await axios.post(
+        `${process.env.URL_API}/api/auth/mfa/passkey/login`,
+        {
           start: false,
           finish: true,
           options,
           id: localStorage.getItem("userId"),
-        }),
-      }
-    );
-    const data = await response.json();
+        },
+        { withCredentials: true }
+      );
 
-    if (data.status === 200) {
-      console.log("user logged in with passkey", data);
-      navigate("/");
+      const data = response.data;
+
+      if (data.status === 200) {
+        console.log("user logged in with passkey", data);
+        localStorage.setItem("userId", data.metadata.id);
+        localStorage.setItem("userEmail", data.metadata.email);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error during MFA passkey login", error);
     }
   };
 
   const signInWithPasskey = async () => {
-    const createOptionsResponse = await fetch(
-      `${process.env.URL_API}/api/auth/passkey/login`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
+    try {
+      const createOptionsResponse = await axios.post(
+        `${process.env.URL_API}/api/auth/passkey/login`,
+        {
           start: true,
           finish: false,
           options: null,
-        }),
-      }
-    );
+        },
+        { withCredentials: true }
+      );
 
-    const { metadata: loginOptions } = await createOptionsResponse.json();
-    const options = await get(loginOptions);
+      const { metadata: loginOptions } = createOptionsResponse.data;
+      const options = await get(loginOptions);
 
-    const response = await fetch(
-      `${process.env.URL_API}/api/auth/passkey/login`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
+      const response = await axios.post(
+        `${process.env.URL_API}/api/auth/passkey/login`,
+        {
           start: false,
           finish: true,
           options,
-        }),
-      }
-    );
-    const data = await response.json();
+        },
+        { withCredentials: true }
+      );
 
-    if (data.status === 200) {
-      console.log("user logged in with mfa passkey", data);
-      navigate("/");
+      const data = response.data;
+
+      if (data.status === 200) {
+        console.log("user logged in with passkey", data);
+        localStorage.setItem("userId", data.metadata.id);
+        localStorage.setItem("userEmail", data.metadata.email);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error during passkey login", error);
     }
   };
 

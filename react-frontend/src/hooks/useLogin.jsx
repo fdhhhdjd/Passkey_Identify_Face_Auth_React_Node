@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -9,16 +10,13 @@ const useLogin = () => {
   const loginUser = async (email, password) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${process.env.URL_API}/api/auth/login`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await axios.post(
+        `${process.env.URL_API}/api/auth/login`,
+        { email, password },
+        { withCredentials: true } // This is the equivalent of fetch's credentials: 'include'
+      );
 
-      const data = await response.json();
+      const data = response.data;
       if (response.status === 200) {
         if (data.mfaRequired) {
           navigate("/mfa"); // Adjust the URL as needed for your routing setup
@@ -26,6 +24,7 @@ const useLogin = () => {
         } else {
           console.log("Login successful:", data);
           localStorage.setItem("userId", data.metadata.id);
+          localStorage.setItem("userEmail", data.metadata.email);
           return true;
         }
       } else {
@@ -34,8 +33,11 @@ const useLogin = () => {
         return false;
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      setError(error.message);
+      console.error(
+        "Error during login:",
+        error.response ? error.response.data : error.message
+      );
+      setError(error.response ? error.response.data.message : error.message);
     } finally {
       setIsLoading(false);
     }
