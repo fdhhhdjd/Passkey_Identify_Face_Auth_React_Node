@@ -21,8 +21,7 @@ class CookieHelpers {
   static saveCookie(res, key, value, time = timeConstants._1_DAY) {
     const option = {
       httpOnly: true,
-      sameSite:
-        process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
+      sameSite: "None",
       secure: process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
       maxAge: time,
       // partitioned: true,
