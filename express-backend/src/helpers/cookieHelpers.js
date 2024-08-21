@@ -25,7 +25,7 @@ class CookieHelpers {
         process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
       secure: process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
       maxAge: time,
-      partitioned: true,
+      // partitioned: true,
     };
 
     res.cookie(key, value, option);
