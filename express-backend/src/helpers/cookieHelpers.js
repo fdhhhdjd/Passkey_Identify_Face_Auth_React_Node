@@ -38,7 +38,6 @@ class CookieHelpers {
       partitioned: true,
     };
 
-    console.log(option);
     res.cookie(key, value, option);
   }
 }
