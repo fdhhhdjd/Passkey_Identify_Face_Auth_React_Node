@@ -18,7 +18,7 @@ class CookieHelpers {
     return res.clearCookie(key);
   }
 
-  static saveCookie(res, key, value, time = timeConstants._1_DAY * 30) {
+  static saveCookie(res, key, value, time = timeConstants._1_DAY) {
     const option = {
       httpOnly: true,
       sameSite:
