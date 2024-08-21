@@ -34,7 +34,7 @@ class CookieHelpers {
       sameSite: "None",
       secure: process.env.NODE_ENV === appConstants.NODE_APP[0] ? false : true,
       maxAge: time,
-      domain: headerParts[0],
+      // domain: headerParts[0],
       partitioned: true,
     };
 
