@@ -6,7 +6,6 @@ import App from "@/App";
 import PageLoader from "@/components/ui/loaders/pageLoader";
 import RootLoader from "@/components/ui/loaders/rootLoader";
 import { randomNumber } from "@/helpers/randomUtils";
-import { Toaster } from "@/components/common/sonner";
 import ErrorFallback from "@/pages/error";
 
 const NotFound = React.lazy(() => import("@/pages/notfound"));
