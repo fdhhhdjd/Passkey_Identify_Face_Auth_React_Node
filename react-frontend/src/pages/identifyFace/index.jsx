@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+
 import { Button } from "@/components/common/button";
 import * as faceapi from "@vladmandic/face-api";
 import logo from "@/assets/logo.png";
-import axios from "axios";
-import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
 
 const MODEL_PATH = "../src/data/models";
 const VIDEO_DIMENSIONS = { width: 720, height: 560 };
