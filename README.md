@@ -24,7 +24,7 @@ Before you begin, ensure you have the following:
 > **Note:**
 > You'll need to create a Passkey Project on Hanko Cloud with the App URL `http://localhost:5173`. See our docs to learn how to setup a [passkey project](https://docs.hanko.io/passkey-api/setup-passkey-project).
 
-## Getting started
+## Getting started.
 
 1. Clone the repository
 
