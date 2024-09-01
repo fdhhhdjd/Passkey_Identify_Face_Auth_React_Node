@@ -9,7 +9,7 @@
 
 # Project: Passkey Identify Face Auth ( React + Node ).
 
-## Click the image above to watch the video. ( This is video original )
+## Click the image above to watch the video ( This is video original )
 
 [![Watch the video](https://res.cloudinary.com/taidev/image/upload/v1658242538/x4hzit1dmyhrzjsffuvl.png)](https://res.cloudinary.com/taidev/video/upload/v1723006811/passkey_hnqp7y.mp4)
 
