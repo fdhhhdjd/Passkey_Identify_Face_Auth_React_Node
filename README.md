@@ -13,7 +13,6 @@
 
 [![Watch the video](https://res.cloudinary.com/taidev/image/upload/v1658242538/x4hzit1dmyhrzjsffuvl.png)](https://res.cloudinary.com/taidev/video/upload/v1723006811/passkey_hnqp7y.mp4)
 
-
 ## Prerequisites
 
 Before you begin, ensure you have the following:
